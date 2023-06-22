@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracker/models.dart';
+import 'package:workout_tracker/screens/add_day_screen.dart';
 
-class WorkoutDetailsScreen extends StatelessWidget {
+class WorkoutDetailsScreen extends StatefulWidget {
   final Workout workout;
 
   WorkoutDetailsScreen({Key? key, required this.workout}) : super(key: key);
 
   @override
+  _WorkoutDetailsScreenState createState() => _WorkoutDetailsScreenState();
+}
+
+class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(workout.name),
+        title: Text(widget.workout.name),
       ),
       body: ListView.builder(
-        itemCount: workout.days.length,
+        itemCount: widget.workout.days.length,
         itemBuilder: (context, index) {
           return ListTile(
             title: Text('Day ${index + 1}'),
-            subtitle: Text('${workout.days[index].sets.length} sets'),
+            subtitle: Text('${widget.workout.days[index].sets.length} sets'),
             onTap: () {
               // Navigate to day details screen
             },
@@ -27,7 +33,18 @@ class WorkoutDetailsScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          // Navigate to add day screen
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddDayScreen(
+                onSave: (day) {
+                  setState(() {
+                    widget.workout.days.add(day);
+                  });
+                },
+              ),
+            ),
+          );
         },
       ),
     );
