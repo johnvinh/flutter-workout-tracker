@@ -35,7 +35,13 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddWorkoutScreen()),
+            MaterialPageRoute(builder: (context) => AddWorkoutScreen(
+              onSave: (workout) {
+                setState(() {
+                  workouts.add(workout);
+                });
+              }
+            )),
           );
         },
       ),

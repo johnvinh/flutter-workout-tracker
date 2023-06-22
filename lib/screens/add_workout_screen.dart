@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracker/models.dart';
 
 class AddWorkoutScreen extends StatefulWidget {
-  AddWorkoutScreen({Key? key}) : super(key: key);
+  final Function(Workout) onSave;
+
+  AddWorkoutScreen({Key? key, required this.onSave}) : super(key: key);
 
   @override
   _AddWorkoutScreenState createState() => _AddWorkoutScreenState();
@@ -41,7 +43,8 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // Save the workout and navigate back
+                    widget.onSave(Workout(name: _workoutName, days: []));
+                    Navigator.pop(context);
                   }
                 },
               ),
@@ -52,3 +55,4 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
     );
   }
 }
+
