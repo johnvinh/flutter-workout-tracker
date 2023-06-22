@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracker/models.dart';
 
+import 'add_set_screen.dart';
+
 class AddDayScreen extends StatefulWidget {
   final Function(Day) onSave;
 
@@ -40,6 +42,23 @@ class _AddDayScreenState extends State<AddDayScreen> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddSetScreen(
+                onSave: (set) {
+                  setState(() {
+                    _sets.add(set);
+                  });
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }
