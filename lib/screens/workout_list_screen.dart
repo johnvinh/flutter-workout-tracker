@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracker/models.dart';
 
+import 'add_workout_screen.dart';
+
 class WorkoutListScreen extends StatefulWidget {
   WorkoutListScreen({Key? key}) : super(key: key);
 
@@ -31,7 +33,10 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          // Navigate to add workout screen
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddWorkoutScreen()),
+          );
         },
       ),
     );
