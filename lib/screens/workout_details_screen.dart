@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracker/models.dart';
 import 'package:workout_tracker/screens/add_day_screen.dart';
 
+import 'day_details_screen.dart';
+
 class WorkoutDetailsScreen extends StatefulWidget {
   final Workout workout;
 
@@ -25,11 +27,17 @@ class _WorkoutDetailsScreenState extends State<WorkoutDetailsScreen> {
             title: Text('Day ${index + 1}'),
             subtitle: Text('${widget.workout.days[index].sets.length} sets'),
             onTap: () {
-              // Navigate to day details screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DayDetailsScreen(day: widget.workout.days[index]),
+                ),
+              );
             },
           );
         },
       ),
+
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
