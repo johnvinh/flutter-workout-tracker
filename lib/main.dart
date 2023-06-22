@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -120,6 +120,26 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+*/
+import 'package:flutter/material.dart';
+import 'package:workout_tracker/screens/workout_list_screen.dart';
+
+void main() {
+  runApp(WorkoutTrackerApp());
+}
+
+class WorkoutTrackerApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Workout Tracker',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: WorkoutListScreen(),
     );
   }
 }
