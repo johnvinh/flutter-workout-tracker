@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracker/models.dart';
+import 'package:workout_tracker/screens/workout_details_screen.dart';
 
 import 'add_workout_screen.dart';
 
@@ -25,7 +26,12 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
           return ListTile(
             title: Text(workouts[index].name),
             onTap: () {
-              // Navigate to workout details screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WorkoutDetailsScreen(workout: workouts[index]),
+                ),
+              );
             },
           );
         },
@@ -35,16 +41,19 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddWorkoutScreen(
-              onSave: (workout) {
-                setState(() {
-                  workouts.add(workout);
-                });
-              }
-            )),
+            MaterialPageRoute(
+              builder: (context) => AddWorkoutScreen(
+                onSave: (workout) {
+                  setState(() {
+                    workouts.add(workout);
+                  });
+                },
+              ),
+            ),
           );
         },
       ),
     );
   }
+
 }
